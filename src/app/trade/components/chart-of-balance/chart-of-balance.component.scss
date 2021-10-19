@@ -1,0 +1,8 @@
+div {
+    display: flex;
+    justify-content: center;
+    canvas {
+        max-width: 1250px !important;
+        max-height: 750px !important;
+    }
+}

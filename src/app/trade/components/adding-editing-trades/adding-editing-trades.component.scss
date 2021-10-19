@@ -1,0 +1,15 @@
+.close-dialog {
+    cursor: pointer;
+    float: right;
+    margin-top: -10px;
+}
+.trades-form {
+    display: flex;
+    flex-direction: column;
+
+    .datepicker-toggle {
+        svg {
+            width: 2em !important;
+        }
+    }
+}

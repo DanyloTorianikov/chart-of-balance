@@ -1,0 +1,31 @@
+<mat-icon class="close-dialog" mat-dialog-close>close</mat-icon>
+<form class="trades-form" [formGroup]="tradesGroup">
+  <mat-form-field appearance="legacy">
+    <input formControlName="entryPrice" matInput placeholder="Entry Price">
+    <mat-error *ngIf=" tradesGroup.get('entryPrice').errors?.required">The field is required</mat-error>
+    <mat-error *ngIf="tradesGroup.get('entryPrice').errors?.invalidNumber">Invalid value</mat-error>
+    <mat-error
+      *ngIf="!tradesGroup.get('entryPrice').errors?.invalidNumber && tradesGroup.get('entryPrice').errors?.pattern">Only
+      numbers are allowed</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <input formControlName="exitPrice" matInput placeholder="Exit Price">
+    <mat-error *ngIf="tradesGroup.get('exitPrice').errors?.required">The field is required</mat-error>
+    <mat-error *ngIf="tradesGroup.get('exitPrice').errors?.invalidNumber">Invalid value</mat-error>
+    <mat-error
+      *ngIf="!tradesGroup.get('exitPrice').errors?.invalidNumber && tradesGroup.get('exitPrice').errors?.pattern">Only
+      numbers are allowed</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-date-range-input [rangePicker]="picker">
+      <input formControlName="entryDate" (focus)="picker.open()" matStartDate placeholder="Entry date">
+      <input formControlName="exitDate" (focus)="picker.open()" matEndDate placeholder="Exit date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-error *ngIf="tradesGroup.get('entryDate').errors?.required || tradesGroup.get('entryDate').errors?.required">
+      The field is required</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="submit()">{{textButton}}</button>
+</form>
